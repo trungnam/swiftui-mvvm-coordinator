@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct cryptoNewsApp: App {
+    @StateObject private var appCoordinator = AppCoordinator(path: NavigationPath())
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack(path: $appCoordinator.path) {
+                appCoordinator.createFirstModule()
+            }
         }
     }
 }
