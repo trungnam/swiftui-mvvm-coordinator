@@ -38,26 +38,26 @@ final class AppCoordinator: ObservableObject, AppCoordinatorDelegate {
         }
     }
     
-    func naviToDetailCoin() {
-        path.append(NavigationDestination.detail)
-        print(path)
-    }
-    
-    func naviToDetailCoin2() {
-        path.append(NavigationDestination.detail2)
-        print(path)
-    }
-    
     @ViewBuilder
-    func navigationDestination(_ with: NavigationDestination) -> some View {
+    func navigationDestination(
+        _ with: NavigationDestination
+    ) -> some View {
         switch with {
         case .detail:
-            DetailView(viewmodel: 
+            DetailView(viewmodel:
                         DetailViewModel(delegate: self))
         case .detail2:
             DetailView2(viewmodel:
                             DetailView2Model(delegate: self))
         }
+    }
+    
+    func naviToDetailCoin() {
+        path.append(NavigationDestination.detail)
+    }
+    
+    func naviToDetailCoin2() {
+        path.append(NavigationDestination.detail2)
     }
     
     func popToHome() {
