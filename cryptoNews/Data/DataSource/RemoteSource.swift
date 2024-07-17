@@ -1,22 +1,19 @@
 //
-//  ApiService.swift
+//  RemoteSource.swift
 //  cryptoNews
 //
-//  Created by trungnam on 1/7/24.
+//  Created by trungnam on 17/7/24.
 //
-import Foundation
+
 import Combine
+import Foundation
 
-
-protocol ApiServiceProtocol {
+protocol RemoteSourceProtocol {
     func fetchNews() -> AnyPublisher<[News], Error>
     func fetchPrice() -> AnyPublisher<[TopCoin], Error>
 }
 
-class ApiService: ApiServiceProtocol {
-    
-    // Init your repository here
-    
+class RemoteSource: RemoteSourceProtocol {
     private var timer: AnyPublisher<Date, Never> {
         Timer
             .publish(every: 5.0, on: .main, in: .common)
@@ -24,7 +21,7 @@ class ApiService: ApiServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchNews() ->  AnyPublisher<[News], Error> {
+    func fetchNews() -> AnyPublisher<[News], any Error> {
         let topNewsList = [
             News(
                 title: "Philippines adopts Tether’s USDT for social security payments",
@@ -49,7 +46,7 @@ class ApiService: ApiServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchPrice() -> AnyPublisher<[TopCoin], Error>{
+    func fetchPrice() -> AnyPublisher<[TopCoin], any Error> {
         timer.map { _ in
             return [
             TopCoin(name: "Bitcoin", displayPrice: Double.random(in: 50000...100000)),
@@ -60,7 +57,6 @@ class ApiService: ApiServiceProtocol {
         }
         .mapError { _ in NSError() as Error } // Just a placeholder error
         .eraseToAnyPublisher()
-        
     }
     
 }

@@ -24,6 +24,9 @@
 		FA1EB0662C342D830055A98C /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1EB0652C342D790055A98C /* BaseViewModel.swift */; };
 		FA1EB06A2C343D570055A98C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1EB0692C343D560055A98C /* DetailView.swift */; };
 		FA1EB06D2C343D940055A98C /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1EB06C2C343D910055A98C /* Double+.swift */; };
+		FAC39AEB2C47B61E00452DDA /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AEA2C47B60500452DDA /* AppRepository.swift */; };
+		FAC39AEF2C47B90C00452DDA /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AEE2C47B90200452DDA /* LocalDataSource.swift */; };
+		FAC39AF12C47B91600452DDA /* RemoteSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AF02C47B91200452DDA /* RemoteSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,9 @@
 		FA1EB0652C342D790055A98C /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		FA1EB0692C343D560055A98C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FA1EB06C2C343D910055A98C /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		FAC39AEA2C47B60500452DDA /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
+		FAC39AEE2C47B90200452DDA /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		FAC39AF02C47B91200452DDA /* RemoteSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,12 +120,11 @@
 		FA1EB01E2C3275EE0055A98C /* cryptoNews */ = {
 			isa = PBXGroup;
 			children = (
+				FAC39AE92C47B58D00452DDA /* Data */,
 				FA1EB06B2C343D8B0055A98C /* Extension */,
 				FA1EB0622C342CF10055A98C /* Feature */,
 				FA1EB0602C342CCD0055A98C /* Coordinator */,
-				FA1EB05F2C342CBA0055A98C /* Repository */,
 				FA1EB0592C32E28F0055A98C /* Domain */,
-				FA1EB0492C327A710055A98C /* Entities */,
 				FA1EB01F2C3275EE0055A98C /* cryptoNewsApp.swift */,
 				FA1EB0232C3275EF0055A98C /* Assets.xcassets */,
 				FA1EB0252C3275EF0055A98C /* Preview Content */,
@@ -183,7 +188,8 @@
 		FA1EB0592C32E28F0055A98C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				FA1EB05A2C32E2960055A98C /* ApiService.swift */,
+				FAC39AEC2C47B71F00452DDA /* Service */,
+				FA1EB0492C327A710055A98C /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 		FA1EB05F2C342CBA0055A98C /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				FAC39AEA2C47B60500452DDA /* AppRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -243,6 +250,40 @@
 				FA1EB06C2C343D910055A98C /* Double+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		FAC39AE92C47B58D00452DDA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FAC39AF22C47C0A600452DDA /* Model */,
+				FAC39AED2C47B84F00452DDA /* DataSource */,
+				FA1EB05F2C342CBA0055A98C /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FAC39AEC2C47B71F00452DDA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FA1EB05A2C32E2960055A98C /* ApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FAC39AED2C47B84F00452DDA /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FAC39AEE2C47B90200452DDA /* LocalDataSource.swift */,
+				FAC39AF02C47B91200452DDA /* RemoteSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		FAC39AF22C47C0A600452DDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,10 +421,13 @@
 				FA1EB0542C3292300055A98C /* GradientChartView.swift in Sources */,
 				FA1EB0222C3275EE0055A98C /* HomeView.swift in Sources */,
 				FA1EB0582C32DD8E0055A98C /* AppCoordinator.swift in Sources */,
+				FAC39AEB2C47B61E00452DDA /* AppRepository.swift in Sources */,
 				FA1EB06A2C343D570055A98C /* DetailView.swift in Sources */,
 				FA1EB05B2C32E2970055A98C /* ApiService.swift in Sources */,
+				FAC39AF12C47B91600452DDA /* RemoteSource.swift in Sources */,
 				FA1EB0562C32D96D0055A98C /* News.swift in Sources */,
 				FA1EB0502C327ABE0055A98C /* HomeViewModel.swift in Sources */,
+				FAC39AEF2C47B90C00452DDA /* LocalDataSource.swift in Sources */,
 				FA1EB05E2C33CB220055A98C /* DetailView2.swift in Sources */,
 				FA1EB06D2C343D940055A98C /* Double+.swift in Sources */,
 				FA1EB0202C3275EE0055A98C /* cryptoNewsApp.swift in Sources */,
