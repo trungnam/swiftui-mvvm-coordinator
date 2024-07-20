@@ -62,6 +62,7 @@ final class HomeViewModel: BaseViewModel, HomeViewModelProtocol {
     
     func fetchingNewsList() {
         apiService.fetchNews()
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
                 case .finished: break

@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol RemoteSourceProtocol {
-    func fetchNews() -> AnyPublisher<[News], Error>
+    func fetchNews() -> Future<[News], Error>
     func fetchPrice() -> AnyPublisher<[TopCoin], Error>
 }
 
@@ -21,29 +21,17 @@ class RemoteSource: RemoteSourceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchNews() -> AnyPublisher<[News], any Error> {
-        let topNewsList = [
-            News(
-                title: "Philippines adopts Tether’s USDT for social security payments",
-                url: ""
-            ),
-            News(title: "German, US govt's move $150M in crypto", url: ""),
-            News(
-                title: "History suggests Bitcoin poised for rebound in July",
-                url: ""
-            ),
-            News(
-                title: "SEC sues Consensys over MetaMask’s brokerage, staking services",
-                url: ""
-            ),
-            News(
-                title: "Was sub-$60K a bear trap? 5 things to know in Bitcoin this week",
-                url: ""
-            )
-        ]
-        return Just(topNewsList)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    func fetchNews() -> Future<[News], Error> {
+        return Future { promise in
+            Task {
+                do {
+                    let result = try await self.fetchTopNews()
+                    promise(.success(result))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
     }
     
     func fetchPrice() -> AnyPublisher<[TopCoin], any Error> {
@@ -59,4 +47,34 @@ class RemoteSource: RemoteSourceProtocol {
         .eraseToAnyPublisher()
     }
     
+    func simulateNetworkDelay() async throws {
+        try await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 2 seconds
+    }
+
+    func fetchTopNews() async throws -> [News] {
+        try await simulateNetworkDelay()
+        
+        return [
+            News(
+                title: "Philippines adopts Tether’s USDT for social security payments",
+                url: ""
+            ),
+            News(
+                title: "German, US govt's move $150M in crypto",
+                url: ""
+            ),
+            News(
+                title: "History suggests Bitcoin poised for rebound in July",
+                url: ""
+            ),
+            News(
+                title: "SEC sues Consensys over MetaMask’s brokerage, staking services",
+                url: ""
+            ),
+            News(
+                title: "Was sub-$60K a bear trap? 5 things to know in Bitcoin this week",
+                url: ""
+            )
+        ]
+    }
 }

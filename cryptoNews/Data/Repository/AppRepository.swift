@@ -8,7 +8,7 @@
 import Combine
 
 protocol AppRepositoryProtocol: AnyObject {
-    func fetchNews() -> AnyPublisher<[News], Error>
+    func fetchNews() -> Future<[News], Error>
     func fetchPrice() -> AnyPublisher<[TopCoin], Error>
 }
 
@@ -24,7 +24,7 @@ class AppRepository: AppRepositoryProtocol {
         self.remote = remote
     }
     
-    func fetchNews() -> AnyPublisher<[News], any Error> {
+    func fetchNews() -> Future<[News], any Error> {
         remote.fetchNews()
     }
     

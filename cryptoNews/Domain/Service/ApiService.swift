@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 protocol ApiServiceProtocol {
-    func fetchNews() -> AnyPublisher<[News], Error>
+    func fetchNews() -> Future<[News], Error>
     func fetchPrice() -> AnyPublisher<[TopCoin], Error>
 }
 
@@ -21,7 +21,7 @@ class ApiService: ApiServiceProtocol {
         self.repo = repo
     }
     
-    func fetchNews() ->  AnyPublisher<[News], Error> {
+    func fetchNews() ->  Future<[News], Error> {
         repo.fetchNews()
     }
     
