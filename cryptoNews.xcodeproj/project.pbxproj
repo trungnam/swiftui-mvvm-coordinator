@@ -27,6 +27,7 @@
 		FAC39AEB2C47B61E00452DDA /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AEA2C47B60500452DDA /* AppRepository.swift */; };
 		FAC39AEF2C47B90C00452DDA /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AEE2C47B90200452DDA /* LocalDataSource.swift */; };
 		FAC39AF12C47B91600452DDA /* RemoteSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AF02C47B91200452DDA /* RemoteSource.swift */; };
+		FAC39AF42C4C0AE100452DDA /* LastViewCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC39AF32C4C0ADA00452DDA /* LastViewCoin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		FAC39AEA2C47B60500452DDA /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
 		FAC39AEE2C47B90200452DDA /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		FAC39AF02C47B91200452DDA /* RemoteSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSource.swift; sourceTree = "<group>"; };
+		FAC39AF32C4C0ADA00452DDA /* LastViewCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewCoin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +284,7 @@
 		FAC39AF22C47C0A600452DDA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAC39AF32C4C0ADA00452DDA /* LastViewCoin.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				FA1EB0542C3292300055A98C /* GradientChartView.swift in Sources */,
 				FA1EB0222C3275EE0055A98C /* HomeView.swift in Sources */,
 				FA1EB0582C32DD8E0055A98C /* AppCoordinator.swift in Sources */,
+				FAC39AF42C4C0AE100452DDA /* LastViewCoin.swift in Sources */,
 				FAC39AEB2C47B61E00452DDA /* AppRepository.swift in Sources */,
 				FA1EB06A2C343D570055A98C /* DetailView.swift in Sources */,
 				FA1EB05B2C32E2970055A98C /* ApiService.swift in Sources */,

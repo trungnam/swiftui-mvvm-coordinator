@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import SwiftData
 
 final class AppCoordinator: ObservableObject, AppCoordinatorDelegate {
 
@@ -23,7 +24,7 @@ final class AppCoordinator: ObservableObject, AppCoordinatorDelegate {
     }
     
     @ViewBuilder
-    func createFirstModule() -> some View {
+    func createFirstModule(modelContext: ModelContext) -> some View {
         HomeView(
             viewModel: HomeViewModel(
                 delegate: self
@@ -70,7 +71,7 @@ final class AppCoordinator: ObservableObject, AppCoordinatorDelegate {
 protocol AppCoordinatorDelegate: AnyObject {
     associatedtype ViewController: View
 
-    @ViewBuilder func createFirstModule() -> ViewController
+    @ViewBuilder func createFirstModule(modelContext: ModelContext) -> ViewController
     
     func naviToDetailCoin()
     

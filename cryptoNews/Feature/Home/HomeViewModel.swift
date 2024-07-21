@@ -6,7 +6,8 @@
 //
 import Combine
 import Foundation
-
+import SwiftData
+import SwiftUI
 protocol HomeViewModelProtocol: BaseViewModelProtocol {
 
 }
@@ -15,12 +16,13 @@ final class HomeViewModel: BaseViewModel, HomeViewModelProtocol {
     
     @Published private(set) var topListPrices: [TopCoin] = []
     @Published private(set) var topNewsList: [News] = []
+    @Published private(set) var lastViewCoins: [LastViewCoin] = []
 
     private var cancellables = Set<AnyCancellable>()
     private var apiService: ApiServiceProtocol
     
     weak var delegate: (any AppCoordinatorDelegate)?
-    
+        
     init(
         delegate: (any AppCoordinatorDelegate)? = nil,
         apiService: ApiServiceProtocol = ApiService()
@@ -74,4 +76,22 @@ final class HomeViewModel: BaseViewModel, HomeViewModelProtocol {
             .store(in: &cancellables)
     }
     
+    func saveToHistory(coin: TopCoin) {
+        apiService.saveToHistory(coin: coin)
+    }
+    
+    func fetchHistory() {
+        apiService.fetchHistory()
+            .subscribe(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case.finished: break
+                case.failure(let error):
+                    print(error)
+                }
+            } receiveValue: { [weak self] coins in
+                self?.lastViewCoins = coins
+            }
+            .store(in: &cancellables)
+    }
 }

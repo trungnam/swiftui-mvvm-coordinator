@@ -10,14 +10,17 @@ import Combine
 protocol ApiServiceProtocol {
     func fetchNews() -> Future<[News], Error>
     func fetchPrice() -> AnyPublisher<[TopCoin], Error>
+    func saveToHistory(coin: TopCoin)
+    func fetchHistory() -> Future<[LastViewCoin], Error>
 }
 
 class ApiService: ApiServiceProtocol {
-    
+        
     // Init your repository here
     let repo: AppRepositoryProtocol
     
-    init(repo: AppRepositoryProtocol = AppRepository()) {
+    // TODO: fix warning
+    init(repo: AppRepositoryProtocol = AppRepository(local: LocalDataSource.shared)) {
         self.repo = repo
     }
     
@@ -29,4 +32,11 @@ class ApiService: ApiServiceProtocol {
         repo.fetchPrice()
     }
     
+    func saveToHistory(coin: TopCoin) {
+        repo.saveToHistory(coin: coin)
+    }
+    
+    func fetchHistory() -> Future<[LastViewCoin], any Error> {
+        repo.fetchHistory()
+    }
 }
